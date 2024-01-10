@@ -6,7 +6,7 @@ Project: Hangman
 Collaborators:None
 Description:
 */
-/*project/*
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
@@ -64,6 +64,7 @@ public class Main {
                                     } else {
                                         System.out.println("thank you for playing!");
                                         playA = false;
+                                        inputGiven = true;
 
 
 
@@ -84,6 +85,7 @@ public class Main {
                         guesses = guesses - 1;
                         System.out.println("You have " + guesses + " guesses left. ");
                         hangman(guesses);
+
                         if (guesses == 0) {
                             System.out.println("You have failed to guess the secret word. Better luck next time. ");
                             System.out.println("You have guessed the secret word. ");
@@ -219,5 +221,3 @@ public class Main {
 
 
 }
-}
- */
