@@ -6,7 +6,7 @@ Project: Hangman
 Collaborators:None
 Description:
 */
-
+/*project/*
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
@@ -219,3 +219,5 @@ public class Main {
 
 
 }
+}
+ */
