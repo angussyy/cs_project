@@ -7,15 +7,19 @@ Collaborators:None
 Description:
 */
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class Main {
+
 
     public static void main(String[] args) throws FileNotFoundException {
         String[] words = {"APPLE", "CHAIR", "WATCH", "FLOOR", "BOOK", "COMPUTER", "FOOTBALL", "FUN", "SIGHT", "BUTTON"};
+        boolean valid = false;
         boolean playA = false;
         boolean playAgain = true;
         while (playAgain) {
@@ -35,7 +39,17 @@ public class Main {
                 System.out.println("Your secret word looks like this: ");
                 System.out.print(display);
                 String input = (scanner.nextLine()).toUpperCase();
-                if (input.length() == 1) {
+                while (!valid) {
+                    for (int i = 0; i < input.length(); i++) {
+                        if (!(Character.isLetter(input.charAt(i)))) {
+                            System.out.println("Please give a valid input. ");
+                            input = (scanner.nextLine()).toUpperCase();
+                        } else {
+                            valid = true;
+                        }
+                    }
+                }
+                        if (input.length() == 1 && Character.isLetter(input.charAt(0))) {
                     if (secretWord.contains(input)) {
                         for (int i = 0; i < secretWord.length(); i++) {
                             if ((secretWord.charAt(i) + "").equals(input)) {
@@ -67,7 +81,6 @@ public class Main {
                                         inputGiven = true;
 
 
-
                                     }
                                 } else {
                                     System.out.println("give an actual input. ");
@@ -75,8 +88,7 @@ public class Main {
                             }
                             if (playA) {
                                 win = true;
-                            }
-                            else if (!playA) {
+                            } else if (!playA) {
                                 System.exit(0); //quit
                             }
                         }
@@ -85,6 +97,7 @@ public class Main {
                         guesses = guesses - 1;
                         System.out.println("You have " + guesses + " guesses left. ");
                         hangman(guesses);
+
 
                         if (guesses == 0) {
                             System.out.println("You have failed to guess the secret word. Better luck next time. ");
@@ -100,7 +113,7 @@ public class Main {
                                         playA = true;
                                         break;
                                     } else {
-                                        System.out.println("thank you for playing!");
+                                        System.out.println("Game over! thank you for playing!");
                                         playA = false;
                                     }
                                 } else {
@@ -109,27 +122,29 @@ public class Main {
                             }
                             if (playA) {
                                 win = true;
-                            }
-                            else if (!playA) {
-                                //quit
+                            } else if (!playA) {
+                                System.exit(0);
                             }
                         }
                     }
-                }
-                else {
+                } else {
                     System.out.println("invalid input. ");
                 }
             }
+            }
         }
-    }
     public static String getRandomWord(String[] a) {
+
 
         Random rand = new Random();
         int upperbound = a.length;
         return a[rand.nextInt(upperbound)];
 
 
+
+
     }
+
 
     public static void hangman(int a) { //todo
         if (a==7) {
@@ -140,56 +155,58 @@ public class Main {
             System.out.println("       ||");
             System.out.println("=========");
         } else if (a == 6) {
-                System.out.println("   +---+");
-                System.out.println("   |   ||");
-                System.out.println("       ||");
-                System.out.println("       ||");
-                System.out.println("       ||");
-                System.out.println("=========");
-            } else if (a == 5) {
-                System.out.println("   +---+");
-                System.out.println("   |   ||");
-                System.out.println("   O   ||");
-                System.out.println("       ||");
-                System.out.println("       ||");
-                System.out.println("=========");
-            } else if (a == 4) {
-                System.out.println("   +---+");
-                System.out.println("   |   ||");
-                System.out.println("   O   ||");
-                System.out.println("   |   ||");
-                System.out.println("       ||");
-                System.out.println("=========");
-            } else if (a == 3) {
-                System.out.println("   +---+");
-                System.out.println("   |   ||");
-                System.out.println("   O   ||");
-                System.out.println("  /|   ||");
-                System.out.println("       ||");
-                System.out.println("=========");
-            } else if (a == 2) {
-                System.out.println("   +---+");
-                System.out.println("   |   ||");
-                System.out.println("   O   ||");
-                System.out.println("  /|\\  ||");
-                System.out.println("       ||");
-                System.out.println("=========");
-            } else if (a == 1) {
-                System.out.println("   +---+");
-                System.out.println("   |   ||");
-                System.out.println("   O   ||");
-                System.out.println("  /|\\  ||");
-                System.out.println("  /    ||");
-                System.out.println("=========");
-            } else if (a == 0) {
-                System.out.println("   +---+");
-                System.out.println("   |   ||");
-                System.out.println("   O   ||");
-                System.out.println("  /|\\  ||");
-                System.out.println("  / \\  ||");
-                System.out.println("=========");
-            }
+            System.out.println("   +---+");
+            System.out.println("   |   ||");
+            System.out.println("       ||");
+            System.out.println("       ||");
+            System.out.println("       ||");
+            System.out.println("=========");
+        } else if (a == 5) {
+            System.out.println("   +---+");
+            System.out.println("   |   ||");
+            System.out.println("   O   ||");
+            System.out.println("       ||");
+            System.out.println("       ||");
+            System.out.println("=========");
+        } else if (a == 4) {
+            System.out.println("   +---+");
+            System.out.println("   |   ||");
+            System.out.println("   O   ||");
+            System.out.println("   |   ||");
+            System.out.println("       ||");
+            System.out.println("=========");
+        } else if (a == 3) {
+            System.out.println("   +---+");
+            System.out.println("   |   ||");
+            System.out.println("   O   ||");
+            System.out.println("  /|   ||");
+            System.out.println("       ||");
+            System.out.println("=========");
+        } else if (a == 2) {
+            System.out.println("   +---+");
+            System.out.println("   |   ||");
+            System.out.println("   O   ||");
+            System.out.println("  /|\\  ||");
+            System.out.println("       ||");
+            System.out.println("=========");
+        } else if (a == 1) {
+            System.out.println("   +---+");
+            System.out.println("   |   ||");
+            System.out.println("   O   ||");
+            System.out.println("  /|\\  ||");
+            System.out.println("  /    ||");
+            System.out.println("=========");
+        } else if (a == 0) {
+            System.out.println("   +---+");
+            System.out.println("   |   ||");
+            System.out.println("   O   ||");
+            System.out.println("  /|\\  ||");
+            System.out.println("  / \\  ||");
+            System.out.println("=========");
         }
+    }
+
+
 
 
     public static String[] convertFile(String input) throws FileNotFoundException {//
@@ -204,7 +221,9 @@ public class Main {
         scanner.close();
         return array;
 
+
     }
+
 
     public static int countLinesFile(String input) throws FileNotFoundException {//
         File file = new File(input);
@@ -217,6 +236,9 @@ public class Main {
         scanner.close();
         return lines;
     }
+
+
+
 
 
 
